@@ -1,0 +1,12 @@
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+            for (int c = 0; c < nums.Length;c++){
+                for (int d = c+1; d < nums.Length ; d++){
+                    if (nums[c]+nums[d] == target){
+                        return new int[]{c,d};
+                    }
+                }
+                }
+        return nums;
+       }
+}
