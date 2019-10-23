@@ -1,0 +1,17 @@
+public class Solution {
+    public int LengthOfLongestSubstring(string s) {
+        int i = 0, j = 0, max = 0;
+        HashSet<char> set = new HashSet<char>();
+        
+        while(i < s.Length){
+            if(!set.Contains(s[i])){
+                set.Add(s[i++]);
+                max = Math.Max(max, set.Count);
+            }else{
+                set.Remove(s[j++]);
+            }
+        }
+        
+        return max;
+    }
+}
