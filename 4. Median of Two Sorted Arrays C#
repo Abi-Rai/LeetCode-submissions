@@ -1,0 +1,30 @@
+public class Solution {
+    public double FindMedianSortedArrays(int[] nums1, int[] nums2) {
+        int totalLength = nums1.Count() + nums2.Count();
+        List<int> totalNums = new List<int>();
+            foreach (int c in nums1){
+                totalNums.Add(c);
+            }
+            foreach (int c in nums2){
+                totalNums.Add(c);
+            }
+            totalNums.Sort();
+            int totalNumsSize = totalNums.Count();
+        bool evenCH = (totalLength%2 == 0)? true: false; 
+        if (evenCH == true)
+        {
+            double a = totalNums[totalNumsSize/2 -1];
+            double b = totalNums[totalNumsSize/2];
+            return ((a+b)/2);
+        }
+        else if (evenCH == false)
+        {
+            return (double)totalNums[totalNumsSize/2];
+        }
+        else
+        {
+            throw new InvalidOperationException("Empty Array");
+        }
+        return 0;
+    }
+}
