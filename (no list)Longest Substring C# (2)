@@ -1,0 +1,19 @@
+public class Solution {
+    public int LengthOfLongestSubstring(string s) {
+        int res=0;        
+        int start=0; 
+        for(int i=0;i<s.Length;i++)
+        {
+            for(int j=start;j<i;j++)
+            {         
+                res=Math.Max(res,i-j);
+                if(s[i]==s[j])
+                {
+                    start=j+1;
+                    break;
+                }
+            }
+        }
+        return Math.Max(res,s.Length-start); 
+    }
+}
