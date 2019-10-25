@@ -1,0 +1,34 @@
+/*
+With Console outputs on each value to show process
+*/
+public class Solution {
+    public string LongestPalindrome(string s) {
+        int maxLength = 0, startIndex = 0;
+        Console.WriteLine("string s: "+s);
+        for (int i = 0; i < s.Length; i++) {
+            Console.WriteLine("i: "+i);
+            int start = i, end = i;
+            while(end < s.Length-1 && s[start] == s[end+1]){
+                end++;
+            Console.WriteLine("end: "+end);}
+            
+            while(end < s.Length-1 && start > 0 && s[start-1] == s[end+1]) {
+                start--; 
+                Console.WriteLine("(while)start--: "+start);
+                end++;
+                Console.WriteLine("(while)end++: "+end);
+            }
+            if(maxLength < end - start + 1) {
+                Console.WriteLine("if is true: ");
+                maxLength = end - start + 1;
+                Console.WriteLine("maxLength: "+maxLength);
+                startIndex = start;
+                Console.WriteLine("startIndex: "+startIndex);
+            }
+            else{
+                Console.WriteLine("if is false: "+i);
+            }
+        }
+        return s.Substring(startIndex, maxLength);
+    }
+}
