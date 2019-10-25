@@ -1,0 +1,32 @@
+public class Solution {
+    public string LongestPalindrome(string s) {
+        if(s.Length < 2)
+            return s;
+        
+        string longest = "";
+        int mid = 0;
+        
+        while(mid < s.Length - 1) {
+            
+            int left = mid;
+            while(mid < s.Length - 1 && s[mid] == s[mid + 1]) {
+                mid++;
+            }
+            
+            int right = mid;
+            while(left > 0 && right < s.Length - 1 && s[left - 1] == s[right + 1]) {
+                left--;
+                right++;
+            }
+            
+            string curr = s.Substring(left, right - left + 1);
+            
+            if(curr.Length > longest.Length)
+                longest = curr;
+            
+            mid++;
+        }
+        
+        return longest;
+    }
+}
