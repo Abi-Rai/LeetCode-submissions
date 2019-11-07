@@ -1,0 +1,91 @@
+using System.Text.RegularExpressions;
+public class Solution {
+    public int MyAtoi(string str) {
+        if (str =="" || str == " ") return 0;
+        Dictionary<char,int> dict = new Dictionary<char,int>()
+        {
+            {'0',0},
+            {'1',1},
+            {'2',2},
+            {'3',3},
+            {'4',4},
+            {'5',5},
+            {'6',6},
+            {'7',7},
+            {'8',8},
+            {'9',9},
+            {'-',10},
+            {'+',-1},
+            {'.',12}
+        };
+        
+        string trimmedStr = str.Trim(); 
+        if (trimmedStr == "" || trimmedStr == "+")return 0;
+        if (trimmedStr[0] == '-' && trimmedStr.Length == 1) return 0;
+        if (trimmedStr[0] == '+' && trimmedStr[1] == '-' || trimmedStr[0] == '-' && trimmedStr[1] == '+' || trimmedStr[0] == '.') return 0;
+        int alphaB = 0;
+        if (dict.TryGetValue(trimmedStr[0], out alphaB))
+            {
+                alphaB = 0;
+            } 
+                else 
+            {
+                return 0;
+            }
+        if (dict[trimmedStr[0]]== -1 ){
+            if (!dict.ContainsKey(trimmedStr[1])) return 0; 
+            if (dict[trimmedStr [1]] == -1) return 0;
+          trimmedStr = Regex.Replace(trimmedStr, "[^0-9.-^a-z ]", "");  
+        } 
+        int numCounter= 0; 
+        foreach (char s in trimmedStr)
+        {
+            if (dict.ContainsKey(s)){
+                if (numCounter > 0 && dict[s] == 10 && numCounter < trimmedStr.Length -1 ) 
+                { 
+                    return 0;
+                }
+                else if (numCounter > 0 && dict[s] == -1)
+                {
+                    break;
+                }
+                else{
+                    numCounter++;
+                 }
+                continue;
+            }
+            else {
+                break;
+            }
+        }
+        if (trimmedStr.Length != 0) {
+            if (trimmedStr[trimmedStr.Length-1] == '-') numCounter--;    
+        }
+        trimmedStr = trimmedStr.Substring(0,numCounter);
+        bool negative = false;       
+        bool deci = false;
+        int[] allInts = new int [trimmedStr.Length]; 
+        int c = 0; 
+        foreach (char s in trimmedStr){
+            if(dict.ContainsKey(s)&& dict[s]!= 10 &&dict[s]!= 12) allInts[c++]= dict[s];
+            if(dict[s] == 10) negative = true;
+            if(dict[s] == 12) deci = true; 
+        }
+        double ans = 0;
+        int power = 1; 
+        int lengthCheck = negative ? trimmedStr.Length - 1 : trimmedStr.Length; 
+        if (deci) lengthCheck --; 
+        for (int n = 0; n< lengthCheck ; n++){
+            int x = allInts[n];
+            ans += x/(Math.Pow(10,power)); 
+            power++;
+        }
+        ans *= Math.Pow(10,power-1); 
+        if (negative) ans *= -1; 
+        if (deci) ans /= Math.Pow(10,c-1); 
+        if (ans>= Int32.MaxValue ) ans = Int32.MaxValue;
+        if (ans <= Int32.MinValue ) ans = Int32.MinValue;
+        ans = Convert.ToInt32(ans);
+        return (int)ans;
+    }
+}
