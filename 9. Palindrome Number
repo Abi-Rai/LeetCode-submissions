@@ -1,0 +1,22 @@
+public class Solution {
+    public bool IsPalindrome(int x) {
+        string xStr = x.ToString();
+        int xLength = xStr.Length;
+        if (xLength == 1) return true;
+        int mid = xLength/2;
+        int left = mid-1;
+        int right = (xLength%2 == 0)? mid: mid+1;
+        bool ans = false; 
+        while (left>=0){
+         if (xStr[left] == xStr[right]){
+                    left--;
+                    right++;
+                    ans = true;
+            }
+            else{
+                    return false;
+            }
+        }
+        return ans;
+    }
+}
