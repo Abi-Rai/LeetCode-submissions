@@ -1,0 +1,30 @@
+public class Solution {    
+    public int RomanToInt(string s) {
+        if (s == null || s.Length == 0) return 0;
+        Dictionary<char,int> dict = new Dictionary<char,int>()
+        {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000},
+        };
+        int size = s.Length;
+        int first,ans = 0,Z = size-1;
+        while(Z>=0){
+            first = dict[s[Z]];
+            Z--;
+            if (Z>=0 && first > dict[s[Z]])
+            {
+                ans += first - dict[s[Z]];
+                Z--;
+            }
+            else{
+                ans+=first;
+            }
+        }
+        return ans;
+    }
+}
