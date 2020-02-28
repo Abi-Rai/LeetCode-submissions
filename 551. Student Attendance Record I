@@ -1,0 +1,20 @@
+public class Solution {
+    public bool CheckRecord(string s) {
+        int a = 0, l=0; // int counters for absent and late
+        foreach(char ch in s){
+            if(ch=='A') {
+                a++;
+                if(a>1) return false; // if more than 1 absent return false
+                l=0; // if value is A reset continuous late
+                continue;
+            }
+            if(ch=='L') {
+                l++;
+                if (l>2 )return false; // if more than 2 continous late return false
+                continue;
+            }
+            l=0; // if value is P reset continuous late
+        }
+        return true;
+    }
+}
