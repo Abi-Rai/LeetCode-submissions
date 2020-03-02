@@ -1,0 +1,20 @@
+public class Solution {
+    public int SearchInsert(int[] nums, int target) {
+        int ans =0;
+        if(nums.Contains(target)){
+            ans = Array.IndexOf(nums,target);
+        }
+        else if(nums.Contains(target-1)){ 
+            ans = (Array.IndexOf(nums,target-1) + 1);
+        }
+        else if(nums.Contains(target+1)){
+            ans = Array.IndexOf(nums,target+1);
+        }
+        // part for when the target is out of bounds of the array.
+        else{ 
+        // if target is less than the last int in the nums array then target index would be 0
+            ans = target < nums[nums.Length-1] ?  0 : nums.Length; 
+        }
+        return ans;
+    }
+}
