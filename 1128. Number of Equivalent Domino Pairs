@@ -1,0 +1,25 @@
+public class Solution {
+  public int NumEquivDominoPairs(int[][] dominoes) {
+        Dictionary<int,int> counts = new Dictionary<int,int>();
+        
+        int val;
+        for(int i=0; i<dominoes.Length; i++)
+        {
+           val = (Math.Max(dominoes[i][0],dominoes[i][1])) *10 + Math.Min(dominoes[i][0],dominoes[i][1]);
+           if (!counts.ContainsKey(val)) {
+               counts[val] = 0;
+           }
+           counts[val]++;            
+        }
+        int pairs = 0;
+        foreach(int key in counts.Keys)
+        {
+            if (counts[key]>1)
+            {
+               
+                pairs += counts[key]*(counts[key]-1)/2;
+            }
+        }
+        return pairs;
+    }
+}
