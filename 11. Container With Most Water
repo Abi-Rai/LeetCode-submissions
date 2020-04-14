@@ -1,0 +1,19 @@
+public class Solution {
+    public int MaxArea(int[] height) {
+        int areaM = 0;
+        int r = height.Count()-1;
+        int l = 0;
+        while(l<r)
+        {
+            areaM = Math.Max ( areaM, Math.Min(height[l],height[r])*(r-l));
+            if ( height[l] < height[r] ) 
+            {
+                l++;
+            }
+            else {
+                r--;
+            }
+        }
+        return areaM;
+    }
+}
