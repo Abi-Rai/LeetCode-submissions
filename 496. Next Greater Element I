@@ -1,0 +1,25 @@
+public class Solution {
+    public int[] NextGreaterElement(int[] nums1, int[] nums2) {
+        
+        Stack<int> numStack = new Stack<int>(); // for storing the 'keys' for dictionary which have greater elements. 
+        Dictionary<int,int> dict = new Dictionary<int,int>(); // for storing values of keys which have a greater element to the right
+        foreach(int i in nums2){
+            if(numStack.Count == 0 || i < numStack.Peek()){
+                numStack.Push(i);
+            }else{
+                while(numStack.Count>0 && i > numStack.Peek()){
+                    dict.Add(numStack.Pop(),i);
+                }
+                numStack.Push(i);
+            }
+        }
+        for(int i= 0; i < nums1.Length; i++){
+            if(!dict.ContainsKey(nums1[i])){
+                nums1[i] = -1;
+            }else{
+                nums1[i] = dict[nums1[i]];
+            }
+        }
+        return nums1;
+    }
+}
