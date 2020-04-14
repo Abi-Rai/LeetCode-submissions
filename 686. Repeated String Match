@@ -1,0 +1,14 @@
+public class Solution {
+    public int RepeatedStringMatch(string A, string B) {
+        if(A.Contains(B)) return 1;
+       int count = (int)Math.Ceiling((double) B.Length / A.Length);
+       string str = string.Concat(Enumerable.Repeat(A, count));
+       if(str.Contains(B)){
+            return count;
+       }
+       if((str+A).Contains(B)){
+            return count+1;
+       }
+       return -1;
+    }
+}
