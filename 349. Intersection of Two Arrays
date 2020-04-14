@@ -1,0 +1,15 @@
+public class Solution {
+    public int[] Intersection(int[] nums1, int[] nums2) {
+        
+        HashSet<int> hash1 = new HashSet<int>(nums1);
+        HashSet<int> hash2 = new HashSet<int>(nums2);
+        hash1.IntersectWith(hash2);
+        int[] ans = new int[hash1.Count];
+        int idx = 0;
+        foreach(int c in hash1){
+            ans[idx++] = c;
+        }
+        
+        return ans;
+    }
+}
