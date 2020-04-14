@@ -1,0 +1,16 @@
+public class Solution {
+    public int RemoveElement(int[] nums, int val) {
+        if(nums.Length <= 0) return 0;
+        int i = 0;
+        int Le = nums.Length;
+        while(i < Le){
+            if (nums[i] == val){
+                nums[i] = nums[Le-1];
+                Le--;
+            }else{
+            i++;    
+            }
+        }
+        return i;
+    }
+}
