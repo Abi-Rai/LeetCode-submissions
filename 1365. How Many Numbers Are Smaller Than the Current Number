@@ -1,0 +1,21 @@
+public class Solution {
+    public int[] SmallerNumbersThanCurrent(int[] nums) {
+        int numCounter = 0;
+        int[] smallerThan = new int[nums.Length];
+        for(int i = 0; i < nums.Length; i++){
+            numCounter = SmallerNumbers(nums,i);
+            smallerThan[i]=numCounter;
+        }        
+        return smallerThan;
+    }
+    public int SmallerNumbers(int[] nums, int indx){
+        int current = nums[indx];
+        int counter = 0;
+        for( int j = 0; j < nums.Length; j++){
+            if(nums[j] < current){
+                counter++;
+            }
+        }
+        return counter;
+    }
+}
