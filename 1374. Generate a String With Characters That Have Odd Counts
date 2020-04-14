@@ -1,0 +1,24 @@
+public class Solution {
+    public string GenerateTheString(int n) {
+        string alpha ="abcdefghijklmnopqrstuvwxyz";
+        StringBuilder sb = new StringBuilder();
+        int aL = alpha.Length;
+        int counter=0;
+        if(n% 2==0)
+            {
+            for(int j= 0;j<n-1;j++)
+                {
+                sb.Append(alpha[counter]);
+                }
+ sb.Append(alpha[++counter]);
+            return sb.ToString();
+        }
+        while(n > 0)
+            {
+            n--;
+            sb.Append(alpha[counter]);
+            counter = counter > alpha.Length ? 0: counter++;
+            }
+        return sb.ToString();
+    }
+}
