@@ -1,0 +1,43 @@
+public class Solution {
+    public string[] FindWords(string[] words) {
+        char[] rowA = {'q','w','e','r','t','y','u','i','o','p'};
+        char[] rowB = {'a','s','d','f','g','h','j','k','l'};
+        char[] rowC = {'z','x','c','v','b','n','m'};
+        List<string> ansList = new List<string>();
+        for(int i= 0; i < words.Length; i++){
+            int count = 3;
+            string word = words[i].ToLower();
+            foreach(char ch in word){
+                if(!rowA.Contains(ch)){
+                    count--;
+                    break;
+                }
+            }
+                if(count>2){ 
+                    ansList.Add(words[i]);
+                    continue; // no need to check further
+                }
+            foreach(char ch in word){
+                if(!rowB.Contains(ch)){
+                    count--;
+                    break;
+                }
+            }
+                if(count>1){ 
+                    ansList.Add(words[i]);
+                    continue;
+                }
+             foreach(char ch in word){
+                if(!rowC.Contains(ch)){
+                    count--;
+                    break;
+                }
+            }
+                if(count >0){ 
+                    ansList.Add(words[i]);
+                    continue;
+                } 
+            }
+        return ansList.ToArray();
+    }
+}
