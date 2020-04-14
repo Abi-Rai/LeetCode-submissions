@@ -1,0 +1,14 @@
+public class Solution {
+    public string ReverseStr(string s, int k) {
+     char[] c = s.ToCharArray();
+        for(int start = 0; start < c.Length; start = start+ 2*k){
+            int l = start, r = Math.Min(start+k-1, c.Length -1);
+            while(l<r){
+                char temp = c[l];
+                c[l++] = c[r];
+                c[r--] = temp;
+            }
+        }
+        return new string(c);
+    }
+}
