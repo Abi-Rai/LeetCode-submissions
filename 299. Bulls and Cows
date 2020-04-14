@@ -1,0 +1,25 @@
+public class Solution {
+   public string GetHint(string secret, string guess) {
+       int[] count= new int[10];
+       
+       int Bulls = 0;
+       for(int i=0; i< secret.Length; i++)
+       {
+           if (secret[i] == guess[i]) { Bulls++; }
+           else { count[secret[i]-'0']++; }
+       }
+        
+       int Cows = 0;
+        
+       for(int i=0; i<guess.Length; i++)
+       {
+           if (secret[i] != guess[i] && count[guess[i]-'0'] > 0)
+           {
+               count[guess[i]-'0']--;
+               Cows++;
+           }
+       }
+        
+       return Bulls+"A"+Cows+"B";
+    }
+}
