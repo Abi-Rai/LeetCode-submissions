@@ -1,0 +1,14 @@
+public class Solution {
+   public int MaxSubArray(int[] nums)
+        {
+            var prevSum = nums[0];
+            int maxSum = nums[0];
+            for (int i = 1; i < nums.Length; i++)
+            {
+                prevSum = Math.Max(nums[i], nums[i] + prevSum);
+                maxSum = Math.Max(maxSum, prevSum);
+            }
+
+            return maxSum;
+        }
+}
