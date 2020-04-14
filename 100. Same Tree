@@ -1,0 +1,46 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public bool IsSameTree(TreeNode p, TreeNode q) {
+        if(p==null&&q==null) {
+            Console.WriteLine("both null");
+            return true;}
+        if(!checkEqual(p,q)) return false;
+        
+        Stack<TreeNode> queP = new Stack<TreeNode>();
+        Stack<TreeNode> queQ = new Stack<TreeNode>();
+        queP.Push(p);
+        queQ.Push(q);
+        while(queP.Count()>0){
+            p = queP.Pop();
+            q= queQ.Pop();
+            if(!checkEqual(p,q)) return false;
+            if(p !=null){
+                if(!checkEqual(p.left,q.left)) return false;
+                if(p.left!=null){
+                    queP.Push(p.left);
+                    queQ.Push(q.left);
+                }
+                if(!checkEqual(p.right,q.right)) return false;
+                if(p.right!=null){
+                    queP.Push(p.right);
+                    queQ.Push(q.right);
+                }
+            }
+        }
+        return true;
+    }
+    public bool checkEqual(TreeNode p,TreeNode q){
+        if(p==null&&q==null) return true;
+        if(p ==null || q ==null) return false;
+        if(p.val != q.val) return false;
+        return true;
+    }
+}
