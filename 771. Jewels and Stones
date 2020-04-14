@@ -1,0 +1,9 @@
+public class Solution {
+    public int NumJewelsInStones(string J, string S) {
+        int count = 0;
+        foreach(char c in S)
+            if(J.Contains(c))
+                count++;
+        return count;
+    }
+}
