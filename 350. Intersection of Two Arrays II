@@ -1,0 +1,34 @@
+public class Solution {
+    public int[] Intersect(int[] nums1, int[] nums2) {
+        int minLength=0;
+        int maxLength=0; 
+        
+        int[]minArray;
+        int[]maxArray;
+        
+        if(nums1.Length<nums2.Length){
+            minLength = nums1.Length;
+            maxLength = nums2.Length;
+            minArray = nums1;
+            maxArray = nums2;
+        }else{
+            minLength = nums2.Length;
+            maxLength = nums1.Length;
+            minArray = nums2;
+            maxArray = nums1;
+        }
+        List<int> checkList = new List<int>();
+        checkList.AddRange(minArray);
+      
+        List<int> ansList = new List<int>();
+        foreach(int num in maxArray){
+          if(checkList.Contains(num)){
+              ansList.Add(num);
+              checkList.Remove(num);
+          }
+        }
+       
+        
+        return ansList.ToArray();
+    }
+}
