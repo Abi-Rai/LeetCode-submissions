@@ -1,0 +1,48 @@
+public class Solution {
+    public int NextGreaterElement(int n) {
+        int tempN = n;
+        int nLength = n.ToString().Length;
+        if(nLength >= 10) return -1;
+        int[] nArray = new int[nLength];
+        for (int i = nLength-1; i>=0;i--){
+            nArray[i] = tempN % 10;
+            tempN /= 10;
+        }
+        NextPerm(nArray);
+        int result = 0;
+        for(int j = 0; j< nArray.Length;j++){
+            result*= 10;
+            result+= nArray[j];
+        }
+        return result = result == n ? -1 : result;
+    }
+    private void NextPerm(int[] nArray){
+        int first= nArray.Length-2;
+        while(first>=0 && nArray[first+1]<=nArray[first]){
+            first--;
+        }
+        if(first>=0){
+            int second = nArray.Length-1;
+            while(second>=0 && nArray[second] <= nArray[first]){
+                second--;
+            }
+            swap(nArray,first,second);
+            reverse(nArray,first+1);    
+        }else{
+            return;
+        }
+    }
+    private void reverse(int[] nums,int start){
+        int end = nums.Length-1;
+        while(start<end){
+            swap(nums,start,end);
+            start++;
+            end--;
+        }
+    }
+    private void swap(int[] nums, int i, int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+}
