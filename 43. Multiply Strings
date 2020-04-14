@@ -1,0 +1,31 @@
+public class Solution {
+public string Multiply(string num1, string num2) {
+    if((num1.Length==1 && num1[0]=='0') || (num2.Length==1 && num2[0]=='0'))
+        {
+        return new string('0',1);
+        }
+    int len1 = num1.Length;
+    int len2 = num2.Length;
+    int len = len1+len2;
+    int[] arr = new int[len];
+    
+    for(int i=len1-1;i>=0;i--){
+        for(int j=len2-1;j>=0;j--){
+            arr[i+j+1] += (num1[i]-'0') * (num2[j]-'0');
+        }
+    }
+    int carry=0;
+    
+    for(int i=len-1;i>=0;i--){
+        arr[i] += carry;
+        carry = arr[i]/10;
+        arr[i] = arr[i]%10;
+    }
+    string ans = "";
+    for (int k = 0; k <arr.Length; k++){
+        if(k==0 && arr[k] == 0) continue;
+        ans += arr[k];
+    }
+    return ans;
+    }
+}
