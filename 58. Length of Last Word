@@ -1,0 +1,24 @@
+public class Solution {
+    public int LengthOfLastWord(string s) {
+        int ans = 0;
+        if(!s.Contains(' ')) return s.Length;
+        if(s.Length <= 1 && !s.Contains(' ')) return s.Length;
+        
+        for(int i = s.Length-2; i>=0 ; i--){
+            if(s[i] ==' '&& char.IsLetter(s[i+1])){
+                string lastWord = s.Substring(i+1);
+                lastWord = lastWord.Trim();
+                ans = lastWord.Length;
+                return ans;
+            }
+            if(i == 0 && s[i] == ' ') {
+                return 0;
+            }
+            if(i == 0 && s.Contains(' ')){
+                string firstWord = s.Trim();
+                return firstWord.Length;
+            }
+        }
+        return ans;
+    }
+}
