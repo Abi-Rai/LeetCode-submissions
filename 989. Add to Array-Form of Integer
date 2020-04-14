@@ -1,0 +1,23 @@
+public class Solution {
+    public IList<int> AddToArrayForm(int[] A, int K) {
+        List<int> ansList = new List<int>();
+        
+        int i = A.Length-1;
+        string tempNum = ""+K;
+        int j = tempNum.Length-1;
+        
+        int carry= 0;
+        
+        while(i>=0 || j >= 0 || carry >0){
+            int dig1 = i >= 0 ? A[i--] : 0;
+            int dig2 = j >= 0 ? tempNum[j--] - '0' : 0;
+            int sum = (dig1+dig2+carry) % 10;
+            ansList.Add(sum);
+            carry = (dig1+dig2+carry) / 10;
+        }
+        ansList.Reverse();
+        
+        
+        return ansList;
+    }
+}
