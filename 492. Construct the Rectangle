@@ -1,0 +1,14 @@
+public class Solution {
+    public int[] ConstructRectangle(int area) {
+        int M = (int)Math.Sqrt(area);
+        int l= 0, b =0;
+        for(int i = M; i>=i;i--){
+            if(area%i == 0){
+                l = area /i;
+                b=i;
+                break;
+            }
+        }
+        return new int[]{l,b};
+    }
+}
