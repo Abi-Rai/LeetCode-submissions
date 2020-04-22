@@ -1,0 +1,19 @@
+public class Solution {
+    public string ReverseVowels(string s) {
+        string vow = "aeiouAEIOU";
+        StringBuilder sb = new StringBuilder();
+        Queue<char> cQue = new Queue<char>();
+        Stack<int> cStk = new Stack<int>();
+        for(int i = s.Length-1; i >=0 ; i--){
+            if(vow.Contains(s[i])){
+                cQue.Enqueue(s[i]);
+                cStk.Push(i);
+            }
+        }
+        char[] res = s.ToCharArray();
+        while(cQue.Count!=0){
+            res[cStk.Pop()] = cQue.Dequeue();
+        }
+        return new string(res);
+    }
+}
