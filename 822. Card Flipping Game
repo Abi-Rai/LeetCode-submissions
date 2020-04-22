@@ -1,0 +1,24 @@
+public class Solution {
+    public int Flipgame(int[] fronts, int[] backs) {
+        HashSet<int> numSet = new HashSet<int>();
+        for(int i = 0; i<fronts.Length;i++){
+            if(fronts[i]==backs[i]){
+                numSet.Add(fronts[i]);
+            }
+        }
+        int min = 2001; // as given constraints are fronts[i]<=2000 & backs[i] <=2000
+        foreach(int n in fronts){
+            if(!numSet.Contains(n)){
+                min = Math.Min(min,n);
+            }
+        }
+        foreach(int n in backs){
+            if(!numSet.Contains(n)){
+                min = Math.Min(min,n);
+            }
+        }
+        
+        return min%2001;
+    }
+
+}
