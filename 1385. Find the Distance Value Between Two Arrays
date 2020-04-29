@@ -1,0 +1,17 @@
+public class Solution {
+    public int FindTheDistanceValue(int[] arr1, int[] arr2, int d) {
+        int distVal = 0;
+        for (int i= 0; i <arr1.Length; i++){
+            for(int j =0; j <arr2.Length; j++){
+                int dif = arr1[i] - arr2[j];
+                dif = dif < 0 ? dif*-1 : dif;
+                if(dif <= d){
+                    distVal--;
+                   break;
+                }
+            }
+            distVal++;
+        }
+        return distVal;
+    }
+}
