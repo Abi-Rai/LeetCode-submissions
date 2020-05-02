@@ -1,0 +1,13 @@
+public class Solution {
+    public int MinCostToMoveChips(int[] chips) {
+        int eC = 0, oC = 0;
+        foreach(int n in chips){
+            if(n%2 == 0){
+                eC++;
+            }else{
+                oC++;
+            }
+        }
+        return Math.Min(eC,oC);
+    }
+}
