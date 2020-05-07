@@ -1,0 +1,38 @@
+/* faster approach */
+public class Solution {
+    public int MaxScore(string s) {
+        int ans =0;
+        for(int i=1; i<s.Length;i++){
+            string left = s.Substring(0,i);
+            string right = s.Substring(i);
+            int max =0;
+            foreach(char c in left){
+                if(c=='0'){
+                    max++;
+                }    
+            }
+            foreach(char c in right){
+                if(c=='1'){
+                    max++;
+                }    
+            }
+            ans = Math.Max(max,ans);
+        }
+        
+        return ans;
+    }
+}
+
+/* Linq approach slower */
+public class Solution {
+    public int MaxScore(string s) {
+        int ans =0;
+        for(int i=1; i<s.Length;i++){
+            string left = s.Substring(0,i);
+            string right = s.Substring(i);
+            ans = Math.Max(ans,left.Count(x=>x=='0') + right.Count(x=>x=='1'));
+        }
+        return ans;
+    }
+}
+
