@@ -1,0 +1,20 @@
+public class Solution {
+    public string DestCity(IList<IList<string>> paths) {
+        Dictionary<string,int> dict = new Dictionary<string,int>(paths.Count);
+        for(int i =0; i < paths.Count(); i++){
+            IList<string> eachPath = paths[i];
+            for(int j =0 ; j < eachPath.Count();j++){
+                if(!dict.ContainsKey(eachPath[j])){
+                    dict.Add(eachPath[j],1);
+                }else if (dict.ContainsKey(eachPath[j])){
+                    dict[eachPath[j]]++;
+                }
+            }
+            if(dict.ContainsKey(eachPath[0])){
+                 dict[eachPath[0]] -= 2;
+            }
+        }
+        string ans = dict.FirstOrDefault(x=>x.Value == 1).Key;
+        return ans;
+    }
+}
