@@ -1,0 +1,18 @@
+public class Solution {
+    public bool IsHappy(int n) {
+        HashSet<int> nSet = new HashSet<int>(){n};
+        while(n!=1){
+            int nTotal = 0;
+            while(n>0){
+                int digit = n%10;
+                nTotal += (int)Math.Pow(digit,2);
+                n/=10;
+            }
+            if(!nSet.Add(nTotal)){
+                return false;
+            }
+            n=nTotal;
+        }
+        return true;
+    }
+}
