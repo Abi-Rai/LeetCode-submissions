@@ -1,0 +1,23 @@
+public class Solution {
+    public bool CheckIfExist(int[] arr) {
+        HashSet<int> hset = new HashSet<int>();
+        int zeroes = 0;
+        foreach (int x in arr) {
+            if (x == 0) {
+                zeroes = zeroes + 1;
+                if (zeroes > 1)
+                    return true;
+                else
+                    continue;
+            }
+            hset.Add(x);
+        }
+        foreach (int x in arr) {
+            if (hset.Contains(x * 2))
+                return true;
+            if (x % 2 == 0 && hset.Contains(x / 2))
+                return true;
+        }
+        return false;
+    }
+}
