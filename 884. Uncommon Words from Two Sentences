@@ -1,0 +1,27 @@
+public class Solution {
+    public string[] UncommonFromSentences(string A, string B) {
+        Dictionary<string,int> dict = new Dictionary<string,int>();
+        string[] wordsA = A.Split(' ');
+        string[] wordsB = B.Split(' ');
+        var wordsBoth = wordsA.Concat(wordsB);
+        
+        // count the word occurances.
+        foreach(string word in wordsBoth){
+            if(dict.ContainsKey(word)){
+                dict[word]++;
+            }else{
+                dict[word]=1;
+            }
+        }
+        
+        //iterate through the dictionary to find words which only occur once. 
+        List<string> ansList = new List<string>();
+        foreach(KeyValuePair<string,int> dictWord in dict){
+            if(dictWord.Value==1){
+                ansList.Add(dictWord.Key);
+            }
+        }
+        
+        return ansList.ToArray();
+    }
+}
