@@ -1,0 +1,24 @@
+public class Solution {
+    public string SimplifyPath(string path) {
+        string[] pArr = path.Split('/',StringSplitOptions.RemoveEmptyEntries);
+        Stack<string> st = new Stack<string>();
+        foreach(var c in pArr){
+            switch(c){
+                case ".":
+                    break;
+                case "..":
+                    st.TryPop(out string _);
+                    break;
+                default:
+                    st.Push(c);
+                    break;
+            }
+        }
+        List<string> ansLs = new List<string>();
+        foreach(var c in st){
+            ansLs.Add(c);
+        }
+        ansLs.Reverse();
+        return $"/{String.Join('/',ansLs)}";
+    }
+}
