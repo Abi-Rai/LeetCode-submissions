@@ -1,0 +1,13 @@
+public class Solution {
+   public double AngleClock(int hour, int minutes) {
+
+    double hInMin = 5 * (minutes/60d);  
+
+    hInMin += (hour == 12)? 0 : hour * 5;
+
+    double r1 = Math.Abs(hInMin - minutes);
+    double r2 = (hInMin < minutes)? hInMin + 60 - minutes : minutes + 60 - hInMin;
+
+    return Math.Min(r1, r2) * (90 / 15d); 
+    }
+}
