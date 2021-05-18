@@ -1,0 +1,23 @@
+public class Solution {
+    public IList<IList<string>> FindDuplicate(string[] paths) {
+        Dictionary<string,List<string>> dict = new Dictionary<string,List<string>>();
+        foreach(string path in paths){
+            string[] sp = path.Split(' ');
+            if(sp.Length<=1) continue;
+            string dir = sp[0];
+            for(int i=1;i<sp.Length;++i){
+                string[] brack = sp[i].Split('(',')');
+                string full = $"{dir}/{brack[0]}";
+                if(!dict.ContainsKey(brack[1])) dict[brack[1]] = new List<string>();
+                dict[brack[1]].Add(full);
+            }
+        }
+        IList<IList<string>> res = new List<IList<string>>();
+        foreach(var pair in dict){
+                if(pair.Value.Count()>1){
+                    res.Add(pair.Value);
+                }
+        }
+        return res;
+    }
+}
